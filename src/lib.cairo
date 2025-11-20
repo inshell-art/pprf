@@ -1,32 +1,34 @@
-/// Interface representing `HelloContract`.
-/// This interface allows modification and retrieval of the contract balance.
+// pprf.cairo
+
+use core::array::Span;
+
+// 1.0 ↔ 1_000_000 (0..=999_999)
+const NORMAL_SCALE: u256 = 1_000_000;
+
 #[starknet::interface]
-pub trait IHelloStarknet<TContractState> {
-    /// Increase contract balance.
-    fn increase_balance(ref self: TContractState, amount: felt252);
-    /// Retrieve contract balance.
-    fn get_balance(self: @TContractState) -> felt252;
+pub trait IPprf<TState> {
+    /// Core PPRF:
+    ///   input:  arbitrary params chosen by caller
+    ///   output: u32 in [0, 999_999], representing [0.0, 1.0)
+    fn pprf(self: @TState, params: Span<felt252>) -> u32;
 }
 
-/// Simple contract for managing balance.
 #[starknet::contract]
-mod HelloStarknet {
-    use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess};
+mod Pprf {
+    use core::poseidon::poseidon_hash_span;
+    use super::NORMAL_SCALE;
 
     #[storage]
-    struct Storage {
-        balance: felt252,
+    struct Storage { // Empty: no mutable state, pure function.
     }
 
     #[abi(embed_v0)]
-    impl HelloStarknetImpl of super::IHelloStarknet<ContractState> {
-        fn increase_balance(ref self: ContractState, amount: felt252) {
-            assert(amount != 0, 'Amount cannot be 0');
-            self.balance.write(self.balance.read() + amount);
-        }
-
-        fn get_balance(self: @ContractState) -> felt252 {
-            self.balance.read()
+    impl PprfImpl of super::IPprf<ContractState> {
+        fn pprf(self: @ContractState, params: Span<felt252>) -> u32 {
+            // Poseidon(params) → felt252 → map to [0, 999_999]
+            let h: u256 = poseidon_hash_span(params).into();
+            let n: u256 = h % NORMAL_SCALE; // 0..=999_999
+            n.try_into().unwrap()
         }
     }
 }
