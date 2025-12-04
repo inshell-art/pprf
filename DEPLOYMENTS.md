@@ -2,12 +2,12 @@
 
 ## Latest Deployment (Devnet)
 
-**Class Hash:** `0x3cd432d65eb0a3694e9bcab0b55bb61bcc0a6cdc6d5e844f57ba2a47f0b45c0`
-**Contract Address:** `0x038fc2f666d5ca9d92157c566587c29ded73af01071c65a6cc4b0ed3d63e0b1b`
-**Declare Transaction:** `0x1583ba5b5f0ab3c8768a67ba137bcd0ab33f125b9a7ea9702e98e8555260c13`
-**Deploy Transaction:** `0x06739c8ad460e4ff1f8514a68203f86b80bcd5f3bff84c730e1d5b999a45123e`
+**Class Hash:** `0x2d49d6df1f7e4071d1b4e28d89b66127ea8015576265da2b429b447aff09135`
+**Contract Address:** `0x02a0f6152affb38aa5d96ef1c1d262d814639a2ef81716fc7b40c5b6410c2c88`
+**Declare Transaction:** `0x5a8831cec3124d9927774d974a44c0d307f14deea3d76ed766b404736a7b0ad`
+**Deploy Transaction:** `0x05a0813b6fd498bc0cdb9038b8cdad2f26ff506f91eb3b072f0afcc26d9013ce`
 
-**Note:** Class hash unchanged - only re-exports updated in lib.cairo
+**Note:** Package renamed to `glyph_pprf`, test dependencies removed
 
 ## Previous Deployments
 
