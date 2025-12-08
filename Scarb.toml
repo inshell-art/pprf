@@ -13,6 +13,9 @@ starknet = "2.12.2"
 [[target.starknet-contract]]
 sierra = true
 
+[dev-dependencies]
+cairo_test = "2.12.0"
+
 # Visit https://foundry-rs.github.io/starknet-foundry/appendix/scarb-toml.html for more information
 
 # [tool.snforge]                                             # Define `snforge` tool section

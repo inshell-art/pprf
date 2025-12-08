@@ -1,7 +1,7 @@
 // lib.cairo - Main module for pprf
 
+pub mod glyph_interface;
 pub mod pprf_contract;
-pub mod pprf_interface;
 
 // Re-export the interface for convenience
-pub use pprf_interface::{IPprf, IPprfDispatcher, IPprfDispatcherTrait};
+pub use glyph_interface::{IGlyph, IGlyphDispatcher, IGlyphDispatcherTrait};
