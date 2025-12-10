@@ -150,6 +150,15 @@ starkli deploy <class_hash> --network <your-network>
 Record deployed addresses in `DEPLOYMENTS.md`. The GLYPH registry entry for
 `Pprf` on Starknet Sepolia should point to the Sepolia deployment.
 
+### Current deployment (Sepolia)
+
+- **Class Hash**: `0x04db25300db2a6f90893136e20cda25274c87e8409efaf8ed650c2ac7c146097`
+- **Contract Address**: `0x05968e1338e0791644f0fc8e561631a0092dc63f90a4c5b9af259c7bd225010f`
+- **Declare Tx**: `0x00691acf2c780a4e3fd6e382103780d2fc5c2aa00e694b84aab127955ce8c142`
+- **Deploy Tx**: `0x0733bb5b1d53590aa42ecdc9003db52cbd07b31d1c8e993f67cb7c83265c82ae`
+
+RPC used: `https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_10/ixt6dg9JuoeZ8Tt6RGcA8`
+
 ---
 
 ## Metadata
