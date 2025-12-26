@@ -52,7 +52,7 @@ pub mod Pprf {
 
 #[cfg(test)]
 mod tests {
-    use core::array::SpanTrait;
+    use core::array::{Array, ArrayTrait, SpanTrait};
     use core::traits::TryInto;
     use super::*;
 
@@ -80,5 +80,30 @@ mod tests {
         assert(meta.len() == 2, 'metadata len mismatch');
         assert(*meta.at(0_usize) == 'name=pprf;kind=utility;scale=', 'metadata part0 mismatch');
         assert(*meta.at(1_usize) == '1000000;version=0.1.0', 'metadata part1 mismatch');
+    }
+
+    #[test]
+    fn render_is_deterministic() {
+        let mut params = ArrayTrait::new();
+        params.append(42);
+        params.append(7);
+        params.append(99);
+
+        let first = render_glyph(params.span());
+        let second = render_glyph(params.span());
+
+        assert(first.len() == 1, 'len');
+        assert(second.len() == 1, 'len');
+        assert(*first.at(0_usize) == *second.at(0_usize), 'nondeterministic');
+    }
+
+    #[test]
+    fn render_accepts_empty_params() {
+        let params: Array<felt252> = array![];
+        let result = render_glyph(params.span());
+
+        assert(result.len() == 1, 'len');
+        let value: u32 = (*result.at(0_usize)).try_into().unwrap();
+        assert(value <= 999_999_u32, 'out of range');
     }
 }
